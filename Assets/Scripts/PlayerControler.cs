@@ -25,13 +25,13 @@ public class PlayerControler : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetButtonDown("fire"))
+        direction = new Vector3(horizontal, 0f, vertical).normalized;
+        
+        if (Input.GetButtonDown("Fire1"))
         {
             anim.SetTrigger("Attack");
         }
         
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
-
         if (direction.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
