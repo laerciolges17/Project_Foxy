@@ -8,6 +8,9 @@ public class PlayerControler : MonoBehaviour
     [Header("Player Configurations")]
     [SerializeField] private float movementSpeed;
     
+    [Header("Cameras")]
+    [SerializeField] private GameObject camB;
+    
     private Vector3 direction;
     private bool isWalk;
     
