@@ -11,10 +11,12 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private float movementSpeed;
     
     [Header("Cameras")]
-    [SerializeField] private GameObject camB;
     
     private Vector3 direction;
     private bool isWalk;
+    
+    private float horizontal;
+    private float vertical;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,50 +29,51 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        direction = new Vector3(horizontal, 0f, vertical).normalized;
-        
-        if (Input.GetButtonDown("Fire1"))
-        {
-            anim.SetTrigger("Attack");
-        }
-        
-        if (direction.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-            isWalk = true;
-        }
-        else
-        {
-            isWalk = false;
-        }
-        
-        controller.Move(direction * movementSpeed * Time.deltaTime);
-        anim.SetBool("isWalk", isWalk);
-        
+     Inputs();
+     Movecharacter();
+     UpdateAnimator();
+     
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void UpdateAnimator()
     {
-        switch (other.tag)
-        {
-            case "CamTrigger":
-                camB.SetActive(true);
-                break;
-        }
+         anim.SetBool("isWalk", isWalk);
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Movecharacter()
     {
-        switch (other.tag)
-        {
-            case "CamTrigger":
-                camB.SetActive(false);
-                break;
-        }
+         direction = new Vector3(horizontal, 0f, vertical).normalized;
+                
+                if (direction.magnitude >= 0.1f)
+                {
+                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+                    isWalk = true;
+                }
+                else
+                {
+                    isWalk = false;
+                }
+                
+                controller.Move(direction * movementSpeed * Time.deltaTime);
+               
     }
+    
+    
+
+    private void Inputs()
+    {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+                
+                
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    anim.SetTrigger("Attack");
+                }
+    }
+    
+
+   
 }
 
