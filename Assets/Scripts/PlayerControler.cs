@@ -18,6 +18,10 @@ public class PlayerControler : MonoBehaviour
     private float horizontal;
     private float vertical;
     
+    [Header("Attack")]
+    [SerializeField] private ParticleSystem fxAttack;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +36,7 @@ public class PlayerControler : MonoBehaviour
      Inputs();
      Movecharacter();
      UpdateAnimator();
+     
      
     }
 
@@ -69,11 +74,14 @@ public class PlayerControler : MonoBehaviour
                 
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    anim.SetTrigger("Attack");
+                    Attack();
                 }
     }
-    
 
+    private void Attack()
+    {
+        anim.SetTrigger("Attack");
+    }
    
 }
 
