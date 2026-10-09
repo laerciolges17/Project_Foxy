@@ -20,6 +20,8 @@ public class PlayerControler : MonoBehaviour
     
     [Header("Attack")]
     [SerializeField] private ParticleSystem fxAttack;
+
+    private bool isAttack;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,6 +29,7 @@ public class PlayerControler : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -36,7 +39,6 @@ public class PlayerControler : MonoBehaviour
      Inputs();
      Movecharacter();
      UpdateAnimator();
-     
      
     }
 
@@ -49,18 +51,18 @@ public class PlayerControler : MonoBehaviour
     {
          direction = new Vector3(horizontal, 0f, vertical).normalized;
                 
-                if (direction.magnitude >= 0.1f)
-                {
-                    float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-                    isWalk = true;
-                }
-                else
-                {
-                    isWalk = false;
-                }
+         if (direction.magnitude >= 0.1f)
+         {
+             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+             transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
+             isWalk = true;
+         }
+         else
+         {
+             isWalk = false;
+         }
                 
-                controller.Move(direction * movementSpeed * Time.deltaTime);
+         controller.Move(direction * movementSpeed * Time.deltaTime);
                
     }
     
@@ -72,7 +74,7 @@ public class PlayerControler : MonoBehaviour
             vertical = Input.GetAxis("Vertical");
                 
                 
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && !isAttack)
                 {
                     Attack();
                 }
@@ -80,8 +82,16 @@ public class PlayerControler : MonoBehaviour
 
     private void Attack()
     {
+        isAttack = true;
         anim.SetTrigger("Attack");
+        fxAttack.Emit(1);
+    }
+
+    public void AttackDone()
+    {
+        isWalk = false;
     }
    
+    
 }
 
