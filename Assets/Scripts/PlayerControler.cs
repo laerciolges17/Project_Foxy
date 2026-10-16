@@ -91,13 +91,23 @@ public class PlayerControler : MonoBehaviour
         isAttack = true;
         anim.SetTrigger("Attack");
         fxAttack.Emit(1);
+        
+        hitInfo = Physics.OverlapSphere(hitbox.position, hitRange, hitMask);
     }
 
     public void AttackDone()
     {
         isAttack = false;
     }
-   
+
+    private void OnDrawGizmosSelected()
+    {
+        if (hitbox != null)
+        {
+            Gizmos.color = Color.darkRed;
+            Gizmos.DrawWireSphere(hitbox.position, hitRange);
+        }
+    }
     
 }
 
