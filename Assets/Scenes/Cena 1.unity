@@ -756,11 +756,12 @@ MonoBehaviour:
   movementSpeed: 5
   fxAttack: {fileID: 2045105650}
   hitbox: {fileID: 1121282565}
-  hitRange: 0.5
+  hitRange: 0.823
   hitInfo: []
   hitMask:
     serializedVersion: 2
     m_Bits: 64
+  amountDamage: 1
 --- !u!143 &1202890780
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2292,6 +2293,7 @@ GameObject:
   - component: {fileID: 7365936789437684072}
   - component: {fileID: 5203185501035599978}
   - component: {fileID: 7365936789437908297}
+  - component: {fileID: 7365936789437908298}
   m_Layer: 6
   m_Name: Grama
   m_TagString: Untagged
@@ -2322,6 +2324,18 @@ CapsuleCollider:
   m_Height: 0.4
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7365936789437908298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7365936789437908296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0269fd9d454dfbd4f8a7cdb511007606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Grass
 --- !u!1 &8243026592958431689
 GameObject:
   m_ObjectHideFlags: 0
