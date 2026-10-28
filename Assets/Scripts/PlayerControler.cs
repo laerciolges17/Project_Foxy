@@ -97,7 +97,7 @@ public class PlayerControler : MonoBehaviour
 
         foreach (Collider col in hitInfo)
         {
-            col.gameObject.SendMessage("GetHit",amountDamage, SendMessageOptions.DontRequireReceiver);//o col e uma referencia ao objeto do tipo collider que esta em Info.
+            col.gameObject.SendMessage("GetHit", amountDamage, SendMessageOptions.DontRequireReceiver);//o col e uma referencia ao objeto do tipo collider que esta em Info.
         }
     }
 

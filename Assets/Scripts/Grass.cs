@@ -7,14 +7,13 @@ public class Grass : MonoBehaviour
         
    private void GetHit(int amount)
    {
-       if (isCut)
+       if (!isCut)
        {
            transform.localScale = new Vector3(1, 1, 1);
            fxHit.Emit(10);
            isCut = true;
-           
        }
-        transform.localScale = new Vector3(1, 1, 1);
+        
    }
 
 }
