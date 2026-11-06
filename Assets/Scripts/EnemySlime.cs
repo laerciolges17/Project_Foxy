@@ -56,11 +56,9 @@ public class EnemySlime : MonoBehaviour
 
     private void StateManeger()
     {
-        switch ()
-        {
-            case 
-                 break
-        }
+        
+        
+        
     }
     
 }
