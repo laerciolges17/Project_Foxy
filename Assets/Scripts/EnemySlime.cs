@@ -77,9 +77,6 @@ public class EnemySlime : MonoBehaviour
         switch (state)
         {
             case EnemyState.IDLE:
-                destination = transform.position;
-                agent.destination = destination;
-                StartCoroutine(IdleRoutine());
                 break;
             case EnemyState.ALERT:
                 break;
@@ -90,10 +87,6 @@ public class EnemySlime : MonoBehaviour
             case EnemyState.FURY:
                 break;
             case EnemyState.PATROL:
-                idWayPoint = Random.Range(0, gameManager.slimeWayPoints.Length);
-                destination = gameManager.slimeWayPoints[idWayPoint].position;
-                agent.destination = destination;
-                StartCoroutine(PatrolRoutine());
                 break;
         }
     }
@@ -107,11 +100,16 @@ public class EnemySlime : MonoBehaviour
         switch (state)
         {
             case EnemyState.IDLE:
+                destination = transform.position;
+                agent.destination = destination;
                 StartCoroutine(IdleRoutine());
                 break;
             case EnemyState.ALERT:
                 break;
             case EnemyState.PATROL:
+                idWayPoint = Random.Range(0, gameManager.slimeWayPoints.Length);
+                destination = gameManager.slimeWayPoints[idWayPoint].position;
+                agent.destination = destination;
                 StartCoroutine(PatrolRoutine());
                 break;
         }
