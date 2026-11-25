@@ -14,9 +14,6 @@ public class EnemySlime : MonoBehaviour
     [SerializeField] private float Corroutinetime;
 
     [SerializeField] private EnemyState state;
-
-    [SerializeField] private const float idleWaitTme = 3f;
-    [SerializeField] private const float patrolWaitTme = 5f;
     
     [Header("AI Details")]
     private NavMeshAgent agent;
@@ -68,8 +65,8 @@ public class EnemySlime : MonoBehaviour
     private IEnumerator Died()
     {
         isDie = true;
-        yield return new WaitForSeconds(1.15f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(Corroutinetime);
+        Destroy(this.gameObject);
     }
 
     private void StateManeger()// responsavel por informar o que vai acontecer em cada estado.
@@ -104,20 +101,20 @@ public class EnemySlime : MonoBehaviour
                 agent.destination = destination;
                 StartCoroutine(IdleRoutine());
                 break;
-            case EnemyState.ALERT:
-                break;
             case EnemyState.PATROL:
                 idWayPoint = Random.Range(0, gameManager.slimeWayPoints.Length);
                 destination = gameManager.slimeWayPoints[idWayPoint].position;
                 agent.destination = destination;
                 StartCoroutine(PatrolRoutine());
                 break;
+            case EnemyState.ALERT:
+                break;
         }
     }
 
     private IEnumerator IdleRoutine()
     {
-        yield return new WaitForSeconds(idleWaitTme);
+        yield return new WaitForSeconds(gameManager.idleWaitTme);
         
         if (Random.Range(0, 100) < 50)
         {
@@ -128,12 +125,32 @@ public class EnemySlime : MonoBehaviour
             changesState(EnemyState.PATROL);
         }
         
+        StayStill(stayThreshold:50);
+        
     }
 
     private IEnumerator PatrolRoutine()
     {
-         yield return new WaitForSeconds(patrolWaitTme);
+        yield return new WaitUntil(() => agent.remainingDistance <= 0);
 
-         changesState(EnemyState.IDLE);
+         StayStill(stayThreshold:30);
+    }
+
+    private int Rand()
+    {
+        int rand = Random.Range(0, 100);
+        return rand;
+    }
+
+    private void StayStill(int stayThreshold)
+    {
+        if (Rand() <= stayThreshold)
+        {
+            changesState(EnemyState.IDLE);
+        }
+        else
+        {
+            changesState(EnemyState.PATROL);
+        }
     }
 }   

@@ -14,7 +14,9 @@ public enum EnemyState
 
 public class gameManager : MonoBehaviour
 {
-    [Header("Slime AI")] public Transform[] slimeWayPoints;
+    [Header("Slime AI")]
+    public Transform[] slimeWayPoints;
+    public float idleWaitTme = 3f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
