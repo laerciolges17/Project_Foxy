@@ -116,16 +116,7 @@ public class EnemySlime : MonoBehaviour
     {
         yield return new WaitForSeconds(gameManager.idleWaitTme);
         
-        if (Random.Range(0, 100) < 50)
-        {
-            changesState(EnemyState.IDLE);
-        }
-        else
-        {
-            changesState(EnemyState.PATROL);
-        }
-        
-        StayStill(stayThreshold:50);
+        StayStill(stayThreshold: 50);
         
     }
 
