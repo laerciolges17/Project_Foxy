@@ -1025,7 +1025,7 @@ GameObject:
   m_Layer: 0
   m_Name: gameManager
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1041,12 +1041,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e46c4b9a54fcc940ac7c72647d8e25b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::gameManager
+  player: {fileID: 2066896391319151663}
   slimeWayPoints:
   - {fileID: 1450908573}
   - {fileID: 629932493}
   - {fileID: 1674128263}
   - {fileID: 1956756371}
-  idleWaitTme: 3
+  idleWaitTme: 0
 --- !u!4 &1657862140
 Transform:
   m_ObjectHideFlags: 0
@@ -25221,7 +25222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySlime
   gameManager: {fileID: 0}
-  hp: 2
+  hp: 3
   Corroutinetime: 1.1
   state: 0
 --- !u!195 &7821222718103631009

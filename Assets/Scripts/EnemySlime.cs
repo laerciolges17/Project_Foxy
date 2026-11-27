@@ -34,7 +34,7 @@ public class EnemySlime : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        StateManeger();
     }
     
     private void GetHit(int amount)
@@ -50,6 +50,7 @@ public class EnemySlime : MonoBehaviour
         if (hp > 0)
         {
             anim.SetTrigger("getHit");
+            changesState(EnemyState.FURY);
         }
 
         else
@@ -82,6 +83,8 @@ public class EnemySlime : MonoBehaviour
             case EnemyState.FOLLOW:
                 break;
             case EnemyState.FURY:
+                destination = gameManager.player.position;
+                agent.destination = destination;
                 break;
             case EnemyState.PATROL:
                 break;
@@ -109,6 +112,11 @@ public class EnemySlime : MonoBehaviour
                 break;
             case EnemyState.ALERT:
                 break;
+            case EnemyState.FURY:
+                destination = transform.position;
+                agent.destination = destination;
+                break;
+                
         }
     }
 
